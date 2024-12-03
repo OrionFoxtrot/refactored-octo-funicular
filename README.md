@@ -54,4 +54,4 @@ After running above commands, you can press enter to look at the next render fra
 In our trials, we most often used (25, 25) as the starting position and the coordinates 25 pixels away from bottom and right walls as the goal. (e.g. (475, 475) for the 500 x 500 maps)
 ___________
 
-**Contributors**: Kanyarin Boonkongchuen, Mark Lohatepanont, Rachel Sun
+**Contributors**: Kanyarin Boonkongchuen (kboonk1@swarthmore.edu), Mark Lohatepanont (ml2828@cornell.edu), Rachel Sun (rsun1@swarthmore.edu)
