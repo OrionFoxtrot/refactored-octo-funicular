@@ -1,0 +1,116 @@
+README: ( 7/10)
+
+  - running program dies with an error: 
+    $  python3 environment.py ../Maps/Maze2.png 25 25 475 475 0
+    ...
+    FileNotFoundError: [Errno 2] No such file or directory: 'runtime_images/good_run_map5/world_1.jpg'
+
+
+Paper: ( 84/100) [NOTE: expectations based on 3-person team]
+  * Introduction: 17/20
+    - a bit minimal; no real explanation of why this problem is
+      relevant/interesting, how it fits into the broader picture, etc.
+
+    - also makes a lot of assumptions about what the reader already knows; e.g.
+      you don't show an example of what a 'maze' might look like until page 7
+
+    - you don't define what you mean by "best" path
+
+  * Methods: 24/30
+    - fixed start/goal positions seem like they make this a lot less flexible;
+      if there's some justification for doing this, you need to explain it
+
+    - again, example maps would be very helpful in illustrating what your data
+      look like
+
+    - be careful with anthropomorphic language; describing a robot as "living"
+      can easily mislead less sophisticated readers
+
+    - You seem to misunderstand what "velocity" means.  "Speed" is a scalar
+      metric, encoding how fast you are going (regardless of direction).
+      "Velocity" is 'how fast you are going and in what direction.'  It is
+      explicitly a vector metric, meaning it can be thought of as
+      'speed'+'direction', or as a set of 'speed along each axis' components.  
+      This means that saying "velocity can change instantaneously but direction
+      cannot" is nonsensical.
+      
+    - your assumption about infinite torque significantly limits the class of
+      systems you can model here; most real-world wheeled vehicles do not
+      behave this way (e.g. cars, bicycles, etc.)
+
+    - "perception window" section is missing one of the parameters, and also
+      fails to define these parameters in the text
+
+    - Equation 1 also includes undefined symbols
+
+    - Your section on A* doesn't mention where the actual costs come from; it
+      seems that you're setting this up as a uniform-cost problem, but you
+      never actually say this
+
+    - the organization of your A* explanation is also confusing, since until
+      you get to 2.5.1 we don't know that your 'state' here doesn't match up
+      with the 'state' you've been describing in the previous section
+
+    - your use of an 8-connected grid seems in conflict with your assumption of
+      uniform cost; if we care about distance, then a diagonal move will have a
+      higher cost by a factor of sqrt(2) 
+
+    - you seem to be conflating Q-learning with the entirety of RL; Q-Learning
+      is one algorithm for doing RL, but it's not the only one available.
+
+    - it seems very strange to me that you use a simulation that involves
+      non-determinism, but then when you do RL you use a deterministic
+      abstraction.  There's really no advantage to using RL if you've got a
+      static, fully-observable, discrete, and deterministic environment.
+      Likewise, the fact that your reward function involves doing a full
+      state-space search suggests that RL is really neither necessary nor
+      appropriate here.  The "local information" version at least makes sense
+      as a problem that RL might be useful for.
+
+    - for the 'local information' version, is the state really just the
+      coordinates?  If your control signal is a (relative) angle, your state
+      space really needs to include the current angle or the problem is
+      underspecified and unsolvable.  Also, what are the units on those
+      actions? Degrees? 
+
+    - referencing "lab 8" is fine, but it would be nice to get at least a basic
+      description of the network here (just "fully-connected, one hidden layer
+      with 32 nodes" would be sufficient)
+
+  * Results: 26/30
+
+    - You should reference figures in the order they appear; talking about
+      Figure 4 first and Figure 3 second is confusing.
+
+    - this is *an* optimal path, not *the* optimal path
+
+    - unclear how to interpret Figure 3
+
+    - figure 5 doesn't seem to show what you describe; there's a systematic
+      offset between the 'average' of the blue line and the orange line, so the
+      blue line is not an oscillation with the orange line as its midpoint.
+
+    - Not clear why you spent so much time describing your 'global information'
+      Q-learning variants if your results are just, "it didn't work."
+
+    - discussion of PID controller again uses undefined symbols, and should
+      contain a reference to a source for further details.
+
+    - the 'comparison' between RL and A* has nothing to do with your results,
+      this is just a basic outcome of the difference between the algorithms.
+      A* assumes complete information, RL does not; thus, RL is at a
+      significant computational disadvantage, but can be applied to more
+      problems.
+
+  * Conclusions: 10/10
+
+  * Acknowledgements & References: 7/10
+    - you should really have citations for more than just labs.  For instance,
+      you talk about several types of controller, and give equations; what was
+      your source for these?  Did you refer to any written sources for your
+      description of A* and RL?  Where should a reader go for further
+      information if your explanation is not sufficiently detailed?  Did you
+      use any software libraries? etc.
+
+
+TOTAL: ( 91/110)
